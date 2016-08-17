@@ -2,12 +2,12 @@
  * @author Adrien Couetoux <acouetoux@ulg.ac.be
  */
 // Create the canvas
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
+var canvas = document.createElement('canvas');
+var ctx = canvas.getContext('2d');
 
 // Basic dimensions of the maze and avatar
 var avatarSize = 32;
-var nbHorizontalCells = 30;
+var nbHorizontalCells = 15;
 var nbVerticalCells = 10;
 var cellSize = 50;
 
@@ -208,7 +208,7 @@ var avatarImage = new Image();
 avatarImage.onload = function() {
   avatarReady = true;
 };
-avatarImage.src = "images/avatar.png";
+avatarImage.src = 'images/avatar.png';
 var avatar = {
   speed: 256 // movement in pixels per second
 };
@@ -219,15 +219,15 @@ var goalImage = new Image();
 goalImage.onload = function() {
   goalReady = true;
 };
-goalImage.src = "images/goal.png";
+goalImage.src = 'images/goal.png';
 var goal = {};
 
 // Keyboard controls
 var keysDown = {};
-addEventListener("keydown", function(e) {
+addEventListener('keydown', function(e) {
   keysDown[e.keyCode] = true;
 }, false);
-addEventListener("keyup", function(e) {
+addEventListener('keyup', function(e) {
   delete keysDown[e.keyCode];
 }, false);
 
@@ -318,14 +318,14 @@ var render = function() {
   ctx.closePath();
 
   // Draw timer
-  ctx.strokeStyle = "black";
-  ctx.fillStyle = "white";
-  ctx.font = "24px Helvetica";
-  ctx.textAlign = "left";
-  ctx.textBaseline = "top";
+  ctx.strokeStyle = 'black';
+  ctx.fillStyle = 'white';
+  ctx.font = '24px Helvetica';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
   var currentTime = ((Date.now() - startTime) / 1000).toFixed(2);
-  ctx.fillText("Time: " + currentTime, canvas.width - 128, 32);
-  ctx.fillText("Best: " + bestTime, canvas.width - 128, 64);
+  ctx.fillText('Time: ' + currentTime, canvas.width - 128, 32);
+  ctx.fillText('Best: ' + bestTime, canvas.width - 128, 64);
 };
 
 /**
