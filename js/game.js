@@ -7,8 +7,8 @@ var ctx = canvas.getContext("2d");
 
 // Basic dimensions of the maze and avatar
 var avatarSize = 32;
-var nbHorizontalCells = 50;
-var nbVerticalCells = 20;
+var nbHorizontalCells = 30;
+var nbVerticalCells = 10;
 var cellSize = 50;
 
 canvas.width = 256 + cellSize * nbHorizontalCells;
