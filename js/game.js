@@ -20,7 +20,7 @@ Math.pow(nbVerticalCells * cellSize, 2), 0.5);
 // Declaration of the radar circle radius
 var radius = 1;
 // How far the avatar can see
-var sightRange = 4 * cellSize;
+var sightRange = 5 * cellSize;
 
 var myMaze = (function() {
   var nbHorizontalCells;
