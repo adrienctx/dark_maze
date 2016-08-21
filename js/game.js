@@ -152,38 +152,48 @@ var myMaze = (function() {
    * @param {double} modifier a double to indicate how much time has passed since the last update
    */
   var updatePositions = function(avatar, keysPressed, modifier) {
+    var targetX = avatar.x;
+    var targetY = avatar.y;
     // First update pixel-position
     if (38 in keysPressed) { // Player holding up
+      targetY = avatar.y - Math.min(avatar.speed * modifier, cellSize);
       if (hWalls[avatar.cellY][avatar.cellX] === 1) {
-        avatar.y = Math.max(avatar.y - (avatar.speed * modifier),
+        avatar.y = Math.max(targetY,
         avatar.cellY * cellSize + wallThickness);
       } else {
-        avatar.y -= avatar.speed * modifier;
+        avatar.y = targetY;
       }
+      avatar.cellY = Math.floor(avatar.y / cellSize);
     }
     if (40 in keysPressed) { // Player holding down
+      targetY = avatar.y + Math.min(avatar.speed * modifier, cellSize);
       if (hWalls[avatar.cellY + 1][avatar.cellX] === 1) {
-        avatar.y = Math.min(avatar.y + (avatar.speed * modifier),
+        avatar.y = Math.min(targetY,
         (avatar.cellY + 1) * cellSize - wallThickness);
       } else {
         avatar.y += avatar.speed * modifier;
       }
+      avatar.cellY = Math.floor(avatar.y / cellSize);
     }
     if (37 in keysPressed) { // Player holding left
+      targetX = avatar.x - Math.min(avatar.speed * modifier, cellSize);
       if (vWalls[avatar.cellY][avatar.cellX] === 1) {
-        avatar.x = Math.max(avatar.x - (avatar.speed * modifier),
+        avatar.x = Math.max(targetX,
         avatar.cellX * cellSize + wallThickness);
       } else {
         avatar.x -= avatar.speed * modifier;
       }
+      avatar.cellX = Math.floor(avatar.x / cellSize);
     }
     if (39 in keysPressed) { // Player holding right
+      targetX = avatar.x + Math.min(avatar.speed * modifier, cellSize);
       if (vWalls[avatar.cellY][avatar.cellX + 1] === 1) {
-        avatar.x = Math.min(avatar.x + (avatar.speed * modifier),
+        avatar.x = Math.min(targetX,
         (avatar.cellX + 1) * cellSize - wallThickness);
       } else {
         avatar.x += avatar.speed * modifier;
       }
+      avatar.cellX = Math.floor(avatar.x / cellSize);
     }
     // Then update cell-position
     avatar.cellY = Math.floor(avatar.y / cellSize);
