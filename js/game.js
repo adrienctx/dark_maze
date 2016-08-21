@@ -157,7 +157,11 @@ var myMaze = (function() {
     // First update pixel-position
     if (38 in keysPressed) { // Player holding up
       targetY = avatar.y - Math.min(avatar.speed * modifier, cellSize);
-      if (hWalls[avatar.cellY][avatar.cellX] === 1) {
+      if (hWalls[avatar.cellY][avatar.cellX] === 1 ||
+        (((avatar.cellX + 1) * cellSize - avatar.x) < wallThickness &&
+        vWalls[avatar.cellY - 1][avatar.cellX + 1] === 1) ||
+          ((avatar.x - avatar.cellX * cellSize) < wallThickness &&
+          vWalls[avatar.cellY - 1][avatar.cellX] === 1)) {
         avatar.y = Math.max(targetY,
         avatar.cellY * cellSize + wallThickness);
       } else {
@@ -167,7 +171,11 @@ var myMaze = (function() {
     }
     if (40 in keysPressed) { // Player holding down
       targetY = avatar.y + Math.min(avatar.speed * modifier, cellSize);
-      if (hWalls[avatar.cellY + 1][avatar.cellX] === 1) {
+      if (hWalls[avatar.cellY + 1][avatar.cellX] === 1 ||
+        (((avatar.cellX + 1) * cellSize - avatar.x) < wallThickness &&
+        vWalls[avatar.cellY + 1][avatar.cellX + 1] === 1) ||
+          ((avatar.x - avatar.cellX * cellSize) < wallThickness &&
+          vWalls[avatar.cellY + 1][avatar.cellX] === 1)) {
         avatar.y = Math.min(targetY,
         (avatar.cellY + 1) * cellSize - wallThickness);
       } else {
@@ -177,7 +185,11 @@ var myMaze = (function() {
     }
     if (37 in keysPressed) { // Player holding left
       targetX = avatar.x - Math.min(avatar.speed * modifier, cellSize);
-      if (vWalls[avatar.cellY][avatar.cellX] === 1) {
+      if (vWalls[avatar.cellY][avatar.cellX] === 1 ||
+        (((avatar.cellY + 1) * cellSize - avatar.y) < wallThickness &&
+        hWalls[avatar.cellY + 1][avatar.cellX - 1] === 1) ||
+          ((avatar.y - avatar.cellY * cellSize) < wallThickness &&
+          hWalls[avatar.cellY][avatar.cellX - 1] === 1)) {
         avatar.x = Math.max(targetX,
         avatar.cellX * cellSize + wallThickness);
       } else {
@@ -187,7 +199,11 @@ var myMaze = (function() {
     }
     if (39 in keysPressed) { // Player holding right
       targetX = avatar.x + Math.min(avatar.speed * modifier, cellSize);
-      if (vWalls[avatar.cellY][avatar.cellX + 1] === 1) {
+      if (vWalls[avatar.cellY][avatar.cellX + 1] === 1 ||
+        (((avatar.cellY + 1) * cellSize - avatar.y) < wallThickness &&
+        hWalls[avatar.cellY + 1][avatar.cellX + 1] === 1) ||
+          ((avatar.y - avatar.cellY * cellSize) < wallThickness &&
+          hWalls[avatar.cellY][avatar.cellX + 1] === 1)) {
         avatar.x = Math.min(targetX,
         (avatar.cellX + 1) * cellSize - wallThickness);
       } else {
